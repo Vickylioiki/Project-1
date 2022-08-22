@@ -1,0 +1,76 @@
+* {
+    font-family: 'Londrina Solid', cursive;
+    font-weight: lighter;
+    font-size: 20px;
+}
+
+
+
+.title {
+    text-align: center;
+    font-family: 'Londrina Solid', cursive;
+    font-weight: bold;
+    font-size: 80px;
+    background-color: #f3ec78;
+    background-image: linear-gradient(45deg, #f3ec78, #af4261);
+    background-size: 100%;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-text-fill-color: transparent;
+
+    margin-bottom: -15px;
+}
+
+.button-wrapper {
+    display: flex;
+    justify-content: center;
+
+}
+
+.button-wrapper>button {
+    margin-left: 20px;
+}
+
+
+.speed-bar {
+
+    height: auto;
+    border-radius: 10px;
+}
+
+.pixel-bar {
+
+    height: auto;
+    border-radius: 10px;
+}
+
+.wrapper {
+    padding: 20px 50px;
+}
+
+#canvas {
+    width: 100vw;
+}
+
+.section-wrapper {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.rules-by-user>div {
+    padding-bottom: 10px;
+
+
+}
+
+.display-none {
+    display: none;
+}
+
+.game-title {
+    text-align: center;
+    font-size: 50px;
+    color: #cc4357;
+}

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Itim&family=Pacifico&family=Palanquin+Dark&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Itim&family=Pacifico&family=Palanquin+Dark&display=swap"
+        rel="stylesheet">
+
+
+    <script src="https://kit.fontawesome.com/b635d6dc2e.js" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="psw.css" />
+    <title>Vicky's Personal Website</title>
+</head>
+
+<body>
+
+
+    <!-- Cover Page -->
+
+    <div id="home" class="container-fluid">
+        <div class="coverPage-wrapper">
+            <div id="background" class="d-flex align-items-center">
+                <div class="row">
+                    <div class="word-wrapper">
+
+                        <div class="cover-word hello col-12">Hello! I am Vicky.</div>
+                        <div class="cover-word welcome col-12">Welcome to my personal website.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- nav bar -->
+    <div class="container-fluid" id="navbar">
+        <div class="navbar-header">
+            <div class="navbar-wrapper">
+                <ul>
+                    <li>
+                        <a href="#home">
+                            <span class="icon"><i class="fa fa-solid fa-house-chimney"></i></span>
+                            <span class="title">Home</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#aboutMe">
+                            <span class="icon"><i class="fa fa-solid fa-user"></i></span>
+                            <span class="title">About Me</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#contact">
+                            <span class="icon"><i class="fa fa-solid fa-comment"></i></span>
+                            <span class="title">Contact Me</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="gol.html">
+                            <span class="icon"><i class="fa fa-solid fa-gamepad"></i></span>
+                            <span class="title">Game Of Life</span>
+                        </a>
+                    </li>
+                </ul>
+
+            </div>
+            <div class="toggle"></div>
+        </div>
+
+    </div>
+
+
+
+    <!-- About Me -->
+    <div id="aboutMe" class="container-fluid">
+        <div class="about-wrapper">
+            <div class="title-wrapper">
+                <div class="about-title col-12">About Me</div>
+            </div>
+
+
+            <div class="about-content-wrapper">
+                <div class="row">
+                    <div class="col-md-5">
+                        <img class="photo" src="cat2.png" alt="photo">
+                    </div>
+                    <div class="col-md-7">
+                        <div class="about-name">Li Oi Ki, Vicky</div>
+                        <div class="about-content"><span><i class="fa-solid fa-caret-right"></i>
+                                Birthday:</span> 7 March 1996</div>
+                        <div class="about-content"><span><i class="fa-solid fa-caret-right"></i> Age:</span> 26
+                        </div>
+                        <div class="about-content"><span><i class="fa-solid fa-caret-right"></i> Phone:</span>
+                            5393 8999
+                        </div>
+                        <div class="about-content"><span><i class="fa-solid fa-caret-right"></i>
+                                Education:</span> Degree
+                        </div>
+                        <div class="about-content"><span><i class="fa-solid fa-caret-right"></i> Email:</span>
+                            vickylioiki@gmail.com</div>
+                        <div class="about-content"><span><i class="fa-solid fa-caret-right"></i>
+                                Hobbies:</span> Badminton,
+                            Travel, Monster Hunter</div>
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+    <!-- contact ME -->
+    <div id="contact" class="contact container-fluid">
+        <div class="contact-title-wrapper">
+            <div class="contact-title">Contact Me</div>
+        </div>
+        <div class="contact-inside">
+            <div class="row contact-wrapper">
+                <!-- <div class="col-md-2"></div> -->
+                <div class="contact-content col-md-2">
+                    <div class="contact-word-title"><i class="fa-solid fa-location-dot contac-icon"></i> Location:
+                    </div>
+                    <div class="contact-info">Lam Tin, Hong Kong</div>
+                    <div class="contact-word-title"><i class="fa-solid fa-envelope contac-icon"></i> Email: </div>
+                    <div class="contact-info">vickylioiki@gmail.com</div>
+
+                    <div class="contact-word-title"><i class="fa-brands fa-whatsapp contac-icon"></i> Whatsapp: </div>
+                    <div class="contact-info">+852 53938999</div>
+                </div>
+
+
+
+                <div class="col-md-6">
+
+                    <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                <input type="text" name="name" class="form-control" id="name" placeholder="Your Name"
+                                    required>
+                            </div>
+                            <div class="col-md-6 form-group mt-3 mt-md-0">
+                                <input type="email" class="form-control" name="email" id="email"
+                                    placeholder="Your Email" required>
+                            </div>
+                        </div>
+                        <div class="form-group mt-3">
+                            <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject"
+                                required>
+                        </div>
+                        <div class="form-group mt-3">
+                            <textarea class="form-control" name="message" rows="5" placeholder="Message"
+                                required></textarea>
+                        </div>
+                        <div class="my-3">
+                            <div class="loading">Loading</div>
+                            <div class="error-message"></div>
+                            <div class="sent-message">Your message has been sent. Thank you!</div>
+                        </div>
+                        <div class="text-center"><button type="submit">Send Message</button></div>
+                    </form>
+
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+    </div>
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <script src="psw.js"></script>
+</body>
+
+</html>
