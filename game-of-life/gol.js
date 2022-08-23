@@ -66,7 +66,8 @@ let pa3 = ['...............O...........',
     '...........O...............']
 
 
-let pa4 = ['...................OOO...............',
+let pa4 = [
+    '...................OOO...............',
     '..................O..O...............',
     '............OOO......O....OOO........',
     '............O..O.O...O....O..O.......',
@@ -96,10 +97,12 @@ let pa4 = ['...................OOO...............',
     '.......O..O....O...O.O..O............',
     '........OOO....O......OOO............',
     '...............O..O..................',
-    '...............OOO...................']
+    '...............OOO...................'
+]
 
 
-let pa5 = ['....OO......OO....',
+let pa5 = [
+    '....OO......OO....',
     '...O..O....O..O...',
     '...O.O......O.O...',
     '.OO..OOO..OOO..OO.',
@@ -116,7 +119,8 @@ let pa5 = ['....OO......OO....',
     '.OO..OOO..OOO..OO.',
     '...O.O......O.O...',
     '...O..O....O..O...',
-    '....OO......OO....']
+    '....OO......OO....'
+]
 
 
 
@@ -177,8 +181,8 @@ function draw() {
 
     background(255);
 
-    val = speedSlider.value();
-    frameRate(val)
+    fr = speedSlider.value();
+    frameRate(fr)
 
     //pixel control
     unitLength = pixelSlider.value();
@@ -202,7 +206,7 @@ function draw() {
     generate();
 
 
-    if (gameMode == false) {
+    if (gameMode === false) {
         for (let i = 0; i < columns; i++) {
             for (let j = 0; j < rows; j++) {
                 if (currentBoard[i][j] == 1) {
@@ -227,8 +231,9 @@ function draw() {
                     if (currentBoard[i][j - 1] == 1) {
                         fill('red');
                     }
-                }
-                else if (i <= playground) {
+
+                    // fill(currentBoard[i][j - 1] == 1 ? rbg : 'red')
+                } else if (i <= playground) {
 
                     fill(0, 51, 102);
                 } else {
@@ -296,7 +301,11 @@ function mouseDragged() {
     /**
      * If the mouse coordinate is outside the board
      */
-    if (gameMode == true) {
+
+    if (mouseX > unitLength * columns || mouseY > unitLength * rows || mouseX < 0 || mouseY < 0) {
+        return;
+    }
+    if (gameMode === true) {
         if (mouseX > unitLength * columns || mouseY > unitLength * rows) {
             return;
         }
@@ -341,27 +350,30 @@ function mouseDragged() {
 
 
         }
-    } else {
-        if (mouseX > unitLength * columns || mouseY > unitLength * rows) {
-            return;
-        }
-        const x = Math.floor(mouseX / unitLength);
-        const y = Math.floor(mouseY / unitLength);
-        let maxWidth = columns * unitLength * 0.8;
-        currentBoard[x][y] = 1;
-        fill(255);
-        stroke(strokeColor);
-        rect(x * unitLength, y * unitLength, unitLength, unitLength, styleSlider.value());
-        console.log(`X:${mouseX}, Y:${mouseY}, unitLength:${unitLength * x}, width:${maxWidth}`);
+        return
     }
 
+
+    const x = Math.floor(mouseX / unitLength);
+    const y = Math.floor(mouseY / unitLength);
+    let maxWidth = columns * unitLength * 0.8;
+    currentBoard[x][y] = 1;
+    fill(255);
+    stroke(strokeColor);
+    rect(x * unitLength, y * unitLength, unitLength, unitLength, styleSlider.value());
+    console.log(`X:${mouseX}, Y:${mouseY}, unitLength:${unitLength * x}, width:${maxWidth}`);
 }
+
+
 
 
 /**
  * When mouse is pressed
  */
 function mousePressed() {
+    if (mouseX > unitLength * columns || mouseY > unitLength * rows || mouseX < 0 || mouseY < 0) {
+        return;
+    }
     noLoop();
     mouseDragged();
 
@@ -371,6 +383,9 @@ function mousePressed() {
  * When mouse is released
  */
 function mouseReleased() {
+    if (mouseX > unitLength * columns || mouseY > unitLength * rows || mouseX < 0 || mouseY < 0) {
+        return;
+    }
     loop();
 }
 
@@ -407,7 +422,9 @@ hexColorSelected.addEventListener('input', function () {
 })
 
 
-function keyPressed() {
+function keyPressed(e) {
+
+    console.log(e);
     if (keyCode === 65) { //a
         noLoop();
         keyPressedX = keyPressedX - unitLength;
@@ -522,9 +539,6 @@ gameElem.addEventListener('click', function () {
     pattern(24, 20, pattern1);
 
     pattern(46, 22, pattern1);
-
-
-
     score = 100;
     gameTitleElem.innerHTML = `Your Score: ${score}`;
 
