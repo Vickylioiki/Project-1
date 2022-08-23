@@ -1,37 +1,44 @@
 window.onresize = function () { location.reload(); }
 
-let unitLength = 1;
+// DOM 
+
+let hexColorSelected = document.querySelector('#hexColor') //userColor
+// let gameBoard = document.querySelector('.game') //game score board
+let gameElem = document.querySelector('.gameStart') //game button
+let gameTitleElem = document.querySelector('.game-title'); //game score board title
+let over = document.querySelector('#overpopulation') //user rules control - over population
+let under = document.querySelector('#underpopulation') // user rules control - under population
+let rebirth = document.querySelector('#rebirth') // user rules control - rebirth 
+
+
+let unitLength = 1; // size of each box
+
+// colors
 const boxColor = 100;
 const strokeColor = 0;
+let userColor = 'yellow';
+
 let columns; /* To be determined by window width */
 let rows;    /* To be determined by window height */
+
 let currentBoard;
 let nextBoard;
-let fr = 15;
+
+let fr = 15; //speed
 let speedSlider;
-let val;
-let rbg = 'yellow';
-let hexColorSelected = document.querySelector('#hexColor')
-let keyPressedX = 0;
-let keyPressedY = 0;
 let pixelSlider;
 let styleSlider;
-let playground;
-let gameBoard = document.querySelector('.game')
-let score = 100;
-let gameElem = document.querySelector('.gameStart')
-let gameTitleElem = document.querySelector('.game-title');
 
+let keyPressedX = 0;
+let keyPressedY = 0;
+
+let playground;
+
+let score = 100;
 let gameMode = false;
 
-let over = document.querySelector('#overpopulation')
-let overNum = 3;
 
-let under = document.querySelector('#underpopulation')
-let underNum = 2;
 
-let rebirth = document.querySelector('#rebirth')
-let rebirthNum = 3;
 
 let pa3 = ['...............O...........',
     '.............OOO...........',
@@ -163,10 +170,6 @@ function setup() {
 * Initialize/reset the board state
 */
 function init() {
-    loop();
-    rbg = 'yellow';
-
-    score = 100;
     for (let i = 0; i < columns; i++) {
         for (let j = 0; j < rows; j++) {
             currentBoard[i][j] = 0;
@@ -189,7 +192,6 @@ function draw() {
 
     columns = floor(width / unitLength);
     rows = floor(height / unitLength);
-    finishCol = 0.2;
     playground = columns * 0.8
 
     for (let i = 0; i < columns; i++) {
@@ -210,7 +212,7 @@ function draw() {
         for (let i = 0; i < columns; i++) {
             for (let j = 0; j < rows; j++) {
                 if (currentBoard[i][j] == 1) {
-                    fill(rbg);
+                    fill(userColor);
                     if (currentBoard[i][j - 1] == 1) {
                         fill(64, 186, 145);
                     }
@@ -223,26 +225,8 @@ function draw() {
         }
 
     } else {
+        gameModeBackground();
 
-        for (let i = 0; i < columns; i++) {
-            for (let j = 0; j < rows; j++) {
-                if (currentBoard[i][j] == 1) {
-                    fill(rbg);
-                    if (currentBoard[i][j - 1] == 1) {
-                        fill('red');
-                    }
-
-                    // fill(currentBoard[i][j - 1] == 1 ? rbg : 'red')
-                } else if (i <= playground) {
-
-                    fill(0, 51, 102);
-                } else {
-                    fill(71, 179, 89);
-                }
-                stroke(strokeColor);
-                rect(i * unitLength, j * unitLength, unitLength, unitLength, styleSlider.value());
-            }
-        }
     }
 }
 
@@ -264,6 +248,11 @@ function generate() {
                     neighbors += currentBoard[(x + i + columns) % columns][(y + j + rows) % rows];
                 }
             }
+
+
+            let overNum = 3;
+            let underNum = 2;
+            let rebirthNum = 3;
 
             // Rules of Life
             if (currentBoard[x][y] == 1 && neighbors < underNum) {
@@ -290,6 +279,30 @@ function generate() {
     [currentBoard, nextBoard] = [nextBoard, currentBoard];
 
 }
+
+
+// user rules of overpopulation
+over.addEventListener('input', function () {
+    overNum = parseInt(over.value);
+    return overNum;
+}
+)
+
+
+// user rules of underpopulation
+under.addEventListener('input', function () {
+    underNum = parseInt(under.value);
+    return underNum;
+}
+)
+
+
+// user rules of rebirth
+rebirth.addEventListener('input', function () {
+    rebirthNum = parseInt(rebirth.value);
+    return rebirthNum;
+}
+)
 
 
 
@@ -417,8 +430,8 @@ document.querySelector('.start').addEventListener('click', function () {
 
 hexColorSelected.addEventListener('input', function () {
     let colorValue = hexColorSelected.value;
-    rbg = ['0x' + colorValue[1] + colorValue[2] | 0, '0x' + colorValue[3] + colorValue[4] | 0, '0x' + colorValue[5] + colorValue[6] | 0];
-    return rbg.join(',');
+    userColor = ['0x' + colorValue[1] + colorValue[2] | 0, '0x' + colorValue[3] + colorValue[4] | 0, '0x' + colorValue[5] + colorValue[6] | 0];
+    return userColor.join(',');
 })
 
 
@@ -452,7 +465,7 @@ function keyPressed(e) {
     const x = Math.floor(keyPressedX / unitLength);
     const y = Math.floor(keyPressedY / unitLength);
     currentBoard[x][y] = 1;
-    fill(rbg);
+    fill(userColor);
     stroke(strokeColor);
     rect(x * unitLength, y * unitLength, unitLength, unitLength);
 
@@ -464,26 +477,6 @@ function windowResized() {
     resizeCanvas(windowWidth, windowHeight);
 
 }
-
-
-over.addEventListener('input', function () {
-    overNum = parseInt(over.value);
-    return overNum;
-}
-)
-
-under.addEventListener('input', function () {
-    underNum = parseInt(under.value);
-    return underNum;
-}
-)
-
-rebirth.addEventListener('input', function () {
-    rebirthNum = parseInt(rebirth.value);
-    return rebirthNum;
-}
-)
-
 
 
 function twoDArr(arr) {
@@ -524,8 +517,8 @@ gameElem.addEventListener('click', function () {
     gameMode = true;
     gameTitleElem.classList.remove('display-none')
     document.querySelector('.restart').innerHTML = "QUIT GAME";
-    this.innerHTML = "RESTART";
-    init();
+    gameReset();
+
     let pattern1 = twoDArr(pa5);
     let pattern2 = twoDArr(pa3);
     pattern(3, 2, pattern1);
@@ -539,7 +532,38 @@ gameElem.addEventListener('click', function () {
     pattern(24, 20, pattern1);
 
     pattern(46, 22, pattern1);
-    score = 100;
+
     gameTitleElem.innerHTML = `Your Score: ${score}`;
 
 })
+
+function gameReset() {
+    score = 100;
+    gameElem.innerHTML = "RESTART";
+    init();
+}
+
+function gameModeBackground() {
+
+    for (let i = 0; i < columns; i++) {
+        for (let j = 0; j < rows; j++) {
+            if (currentBoard[i][j] == 1) {
+                fill(userColor);
+                if (currentBoard[i][j - 1] == 1) {
+                    fill('red');
+                }
+
+                // fill(currentBoard[i][j - 1] == 1 ? userColor : 'red')
+            } else if (i <= playground) {
+
+                fill(0, 51, 102);
+            } else {
+                fill(71, 179, 89);
+            }
+            stroke(strokeColor);
+            rect(i * unitLength, j * unitLength, unitLength, unitLength, styleSlider.value());
+
+        }
+    }
+}
+
